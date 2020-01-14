@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Truck ordering made easy</title>
+</head>
+<body>
+	<h2>Place your order</h2>
+
+    <form action="/polls/place/" method="post">
+	{% csrf_token %}
+	{% for choice in data %}
+	    <input type="radio" name="choice" value="{{ choice.menu }}">{{choice.name}}'s menu: {{choice.menu}}<br>
+	    
+	{% endfor %}
+	<br>First name:<br>
+	<input type="text" name="name">
+	<input type="submit" value="Submit">
+	</form>
+
+	<h2>Update order status</h2>
+
+    <form action="/polls/update/" method="post">
+	{% csrf_token %}
+	{% for user in orders %}
+	    <input type="radio" name="user" value="{{ user.id }}">{{user.name}}<br>
+	    
+	{% endfor %}
+	<br><input type="submit" value="Submit">
+	</form>
+
+	<h2>Get order status</h2>
+
+    <form action="/polls/getStatus/" method="get">
+	{% csrf_token %}
+	{% for user in orders %}
+	    <input type="radio" name="user" value="{{ user.id }}">{{user.name}}<br>
+	    
+	{% endfor %}
+	<br><input type="submit" value="Submit">
+	</form>
+</body>
+</html>
